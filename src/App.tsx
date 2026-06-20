@@ -30,6 +30,7 @@ import {
   Sparkles,
   Home,
   Menu,
+  Briefcase,
   X
 } from "lucide-react";
 
@@ -37,7 +38,7 @@ export default function App() {
   // Navigation & Data States
   const [history, setHistory] = useState<SentimentAnalysisResult[]>([]);
   const [activeTab, setActiveTab] = useState<"dashboard" | "text" | "audio">("dashboard");
-  const [sidebarTab, setSidebarTab] = useState<"portal" | "video" | "presentation">("portal");
+  const [sidebarTab, setSidebarTab] = useState<"portal" | "video" | "presentation" | "commercial">("portal");
   const [selectedResult, setSelectedResult] = useState<SentimentAnalysisResult | null>(null);
   const [currentTime, setCurrentTime] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -185,6 +186,24 @@ export default function App() {
               </div>
               <span className="text-[9px] bg-amber-600/10 text-amber-700 px-1.5 py-0.5 rounded font-bold">Canva</span>
             </button>
+
+            <button
+              onClick={() => {
+                setSidebarTab("commercial");
+                setMobileMenuOpen(false);
+              }}
+              className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left text-sm font-semibold transition-all ${
+                sidebarTab === "commercial"
+                  ? "bg-[#36637e] text-white shadow-sm"
+                  : "text-[#72787d] hover:bg-[#eae8e0] hover:text-[#1b1c17]"
+              }`}
+            >
+              <div className="flex items-center gap-3">
+                <Briefcase className="w-4.5 h-4.5" />
+                <span>Ticari Sunum</span>
+              </div>
+              <span className="text-[9px] bg-sky-600/10 text-sky-700 px-1.5 py-0.5 rounded font-bold">Gamma</span>
+            </button>
           </nav>
         </div>
 
@@ -231,6 +250,7 @@ export default function App() {
                 {sidebarTab === "portal" && "Müşteri Geri Bildirim Analizi"}
                 {sidebarTab === "video" && "Tanıtım Videosu ve Özellik İncelemesi"}
                 {sidebarTab === "presentation" && "Proje Tanıtım Sunumu (Canva)"}
+                {sidebarTab === "commercial" && "Ticari Sunum (Gamma)"}
               </h2>
             </div>
           </div>
@@ -635,11 +655,11 @@ export default function App() {
                   <div>
                     <h3 className="text-lg font-bold text-[#1b1c17]">Canva Sunum Platform Entegrasyonu</h3>
                     <p className="text-xs text-[#72787d] mt-1">
-                      Projenin fikir aşamasından kodlama tamamlama sürecine kadarki yolculuğu içeren Canva slayt dosyası.
+                      Projenin fikir aşamasından kodlama tamamlama sürecine kadarki yolculuğu içeren güncel Canva slayt dosyası.
                     </p>
                   </div>
                   <a 
-                    href="https://canva.link/yfa52p1o1r5mr0x" 
+                    href="https://canva.link/r6csl3xqvli356x" 
                     target="_blank" 
                     referrerPolicy="no-referrer"
                     rel="noopener noreferrer" 
@@ -664,7 +684,7 @@ export default function App() {
                       {/* We embed Canva via standard design embed layout */}
                       <div className="w-full aspect-video bg-[#fbf9f1] rounded-xl overflow-hidden border border-[#e4e3db] relative">
                         <iframe 
-                          src="https://canva.link/yfa52p1o1r5mr0x"
+                          src="https://canva.link/r6csl3xqvli356x"
                           title="Canva Proje Sunumu Slaytları"
                           className="w-full h-full border-0 absolute inset-0"
                           allowFullScreen
@@ -755,6 +775,151 @@ export default function App() {
                         <li>• Boşluk / Sağ Yön: Sonraki Slayt</li>
                         <li>• Sol Yön: Önceki Slayt</li>
                         <li>• F: Tam Ekran Modu</li>
+                      </ul>
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </motion.div>
+            )}
+
+            {/* TAB 4: TİCARİ SUNUM (GAMMA DOCUMENT) SEKMESİ */}
+            {sidebarTab === "commercial" && (
+              <motion.div
+                key="commercial-view"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.2 }}
+                className="space-y-6"
+              >
+                
+                {/* Gamma main layout header card */}
+                <div className="bg-white rounded-2xl border border-[#e4e3db] p-6 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                  <div>
+                    <h3 className="text-lg font-bold text-[#1b1c17]">Ticari Sunum ve Pazar Uygunluğu</h3>
+                    <p className="text-xs text-[#72787d] mt-1">
+                      Uygulamanın ticari potansiyeli, hedef kitlesi ve pazardaki büyüme planlarını içeren Gamma dökümanı.
+                    </p>
+                  </div>
+                  <a 
+                    href="https://gamma.app/docs/Duygu-Analizi-Platformu-ofqrfebi980al3r?mode=doc" 
+                    target="_blank" 
+                    referrerPolicy="no-referrer"
+                    rel="noopener noreferrer" 
+                    className="bg-[#36637e] hover:bg-[#1b4b65] text-white font-bold text-xs px-5 py-3 rounded-xl flex items-center gap-2 transition-all shrink-0 shadow-sm"
+                  >
+                    <span>Ticari Sunumu Yeni Sekmede Aç</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                </div>
+
+                {/* Gamma Presentation Sandbox & custom statistics cards */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                  
+                  {/* Gamma Document Frame (8 Cols) */}
+                  <div className="lg:col-span-8 space-y-6">
+                    <div className="bg-white rounded-2xl border border-[#e4e3db] p-4 shadow-sm">
+                      <div className="flex justify-between items-center mb-4">
+                        <span className="text-xs font-extrabold text-[#72787d] uppercase tracking-widest block">INTERAKTIF BELGE GÖRÜNTÜLEYİCİ</span>
+                        <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                      </div>
+
+                      {/* Embed the Gamma document in an iframe */}
+                      <div className="w-full aspect-video bg-[#fbf9f1] rounded-xl overflow-hidden border border-[#e4e3db] relative">
+                        <iframe 
+                          src="https://gamma.app/docs/Duygu-Analizi-Platformu-ofqrfebi980al3r?mode=doc"
+                          title="Duygu Analizi Platformu Ticari Sunumu"
+                          className="w-full h-full border-0 absolute inset-0"
+                          allowFullScreen
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-black/5 pointer-events-none" />
+                      </div>
+
+                      {/* Advice capsule */}
+                      <p className="text-[11px] text-[#72787d] mt-3 leading-relaxed text-center">
+                        * Gamma platformu çerçeve içi erişimi sınırlandırırsa, yukarıdaki <strong>"Ticari Sunumu Yeni Sekmede Aç"</strong> bağlantısıyla tam belge moduna anında ulaşabilirsiniz.
+                      </p>
+                    </div>
+
+                    {/* Commercial market metrics card */}
+                    <div className="bg-white rounded-2xl border border-[#e4e3db] p-6 shadow-sm">
+                      <h4 className="font-bold text-sm text-[#1b1c17] mb-4 flex items-center gap-1.5">
+                        <Sparkles className="w-4.5 h-4.5 text-amber-500" /> Platform Ticari Değeri ve Pazar Hedefleri
+                      </h4>
+                      
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div className="p-4 bg-[#fbf9f1] rounded-xl border border-[#e4e3db]">
+                          <span className="text-[#36637e] text-lg font-black block mb-1">%34+</span>
+                          <h5 className="font-bold text-xs text-[#1b1c17] mb-1">Müşteri Memnuniyeti</h5>
+                          <p className="text-[10px] text-[#72787d] leading-normal">
+                            Geri bildirimlerde doğru empati ve hızlı yanıt ile sağlanan müşteri sadakati artışı.
+                          </p>
+                        </div>
+
+                        <div className="p-4 bg-[#fbf9f1] rounded-xl border border-[#e4e3db]">
+                          <span className="text-[#36637e] text-lg font-black block mb-1">10 Kat</span>
+                          <h5 className="font-bold text-xs text-[#1b1c17] mb-1">Cevaplama Hızı</h5>
+                          <p className="text-[10px] text-[#72787d] leading-normal">
+                            AI Co-Pilot tonlama üreticisi ile şikayet veya taleplere yanıt yazma süresi kısalır.
+                          </p>
+                        </div>
+
+                        <div className="p-4 bg-[#fbf9f1] rounded-xl border border-[#e4e3db]">
+                          <span className="text-[#36637e] text-lg font-black block mb-1">60%</span>
+                          <h5 className="font-bold text-xs text-[#1b1c17] mb-1">Maliyet Tasarrufu</h5>
+                          <p className="text-[10px] text-[#72787d] leading-normal">
+                            Destek biletlerinin öncelikli olarak yapay zeka süzgecinden geçirilmesiyle sağlanan operasyon tasarrufu.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Gamma Presentation Sidebar (4 Cols) */}
+                  <div className="lg:col-span-4 space-y-6">
+                    <div className="bg-[#f0eee6] rounded-2xl p-6 border border-[#e4e3db] shadow-xs">
+                      <span className="text-[10px] font-bold text-[#36637e] uppercase tracking-wider block mb-1">TİCARİ FİZİBİLİTE</span>
+                      <h4 className="font-bold text-base text-[#1b1c17] mb-2">Platform Fizibilitesi</h4>
+                      <p className="text-xs text-[#72787d] leading-relaxed mb-4">
+                        Gamma üzerinde hazırlanan ticari döküman, projenin SaaS modeli gelir kurgusunu, kurumsal entegrasyon API'larını ve genişleme stratejilerini detaylandırır.
+                      </p>
+
+                      <div className="space-y-2 text-xs font-semibold text-[#1b1c17]" id="commercial-labels">
+                        <div className="flex items-center gap-2">
+                          <CheckCircle2 className="w-4 h-4 text-[#36637e]" />
+                          <span>Gelir Modeli: SaaS / Aylık Abonelik</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <CheckCircle2 className="w-4 h-4 text-[#36637e]" />
+                          <span>Hedef Kitle: CRM & Çağrı Merkezleri</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <CheckCircle2 className="w-4 h-4 text-[#36637e]" />
+                          <span>Teknoloji: Google V3.5 Flash API</span>
+                        </div>
+                      </div>
+
+                      <div className="border-t border-[#e4e3db] pt-4 mt-5">
+                        <p className="text-xs text-[#72787d] italic leading-relaxed">
+                          📈 "Pazardaki en hafif ve hızlı Türkçe duygu analiz motoru olmaya aday altyapı."
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Value Prop Panel */}
+                    <div className="bg-white rounded-2xl p-6 border border-[#e4e3db] shadow-sm">
+                      <h4 className="font-extrabold text-xs text-[#1b1c17] uppercase tracking-wider mb-2">Büyüme Kanalları</h4>
+                      <p className="text-xs text-[#72787d] leading-relaxed mb-3">
+                        Hangi platformlara kolayca entegre edilebilir?
+                      </p>
+                      <ul className="text-xs text-[#72787d] space-y-1 font-mono">
+                        <li>• WhatsApp Business API API</li>
+                        <li>• Zendesk & Salesforce CRM</li>
+                        <li>• Kurumsal E-Posta İstemcileri</li>
                       </ul>
                     </div>
 
