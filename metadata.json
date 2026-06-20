@@ -1,0 +1,6 @@
+{
+  "name": "Duygu Analizi Dashboard",
+  "description": "Metin, ses tonu ve belgeler için yapay zeka destekli detaylı duygu analizi, tonlama kırılımı ve görsel raporlama paneli.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
